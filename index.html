@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Una disculpa</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#03030d;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.space{
+    position:relative;
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 50% 45%, #15152d 0%, #080819 42%, #02020a 100%);
+}
+
+/* =========================
+   ESTRELLAS
+========================= */
+
+.stars{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+}
+
+.star{
+    position:absolute;
+    width:3px;
+    height:3px;
+    background:white;
+    border-radius:50%;
+    opacity:.8;
+    animation:twinkle 3s infinite ease-in-out;
+}
+
+.star:nth-child(3n){
+    width:2px;
+    height:2px;
+}
+
+.star:nth-child(4n){
+    width:4px;
+    height:4px;
+}
+
+@keyframes twinkle{
+    0%,100%{
+        opacity:.25;
+        transform:scale(.7);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1.25);
+    }
+}
+
+/* =========================
+   PLANETA
+========================= */
+
+.planet-area{
+    position:absolute;
+    width:370px;
+    height:370px;
+    right:-105px;
+    top:50%;
+    transform:translateY(-50%);
+    animation:floatPlanet 7s ease-in-out infinite;
+}
+
+.ring-back{
+    position:absolute;
+    width:430px;
+    height:120px;
+    left:-30px;
+    top:125px;
+    border:27px solid rgba(188,139,87,.65);
+    border-radius:50%;
+    transform:rotate(-12deg);
+    filter:blur(1px);
+}
+
+.planet{
+    position:absolute;
+    width:370px;
+    height:370px;
+    border-radius:50%;
+    overflow:hidden;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            #9d704b 0px,
+            #c7945f 25px,
+            #e0ad73 48px,
+            #a9754e 68px,
+            #d59e67 88px,
+            #875d42 110px
+        );
+
+    box-shadow:
+        -25px 0 45px rgba(0,0,0,.65) inset,
+        20px 0 35px rgba(255,210,140,.18) inset,
+        0 0 40px rgba(196,145,90,.12);
+}
+
+.planet:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(30,15,10,.45),
+            transparent 35%,
+            rgba(255,230,190,.12) 70%,
+            rgba(0,0,0,.35)
+        );
+}
+
+.ring-front{
+    position:absolute;
+    width:430px;
+    height:120px;
+    left:-30px;
+    top:125px;
+    border:24px solid rgba(207,157,98,.7);
+    border-radius:50%;
+    transform:rotate(-12deg);
+    clip-path:polygon(0 50%,100% 50%,100% 100%,0 100%);
+}
+
+@keyframes floatPlanet{
+    0%,100%{
+        transform:translateY(-50%);
+    }
+
+    50%{
+        transform:translateY(calc(-50% - 10px));
+    }
+}
+
+/* =========================
+   MENSAJE
+========================= */
+
+.message{
+    position:absolute;
+    left:40px;
+    top:50%;
+    transform:translateY(-50%);
+    width:55%;
+    z-index:5;
+}
+
+.small-title{
+    color:#a7a7c5;
+    font-size:15px;
+    letter-spacing:5px;
+    line-height:1.5;
+    margin-bottom:25px;
+    text-transform:uppercase;
+}
+
+/* Texto que se escribe */
+
+.main-title{
+    color:white;
+    font-size:48px;
+    line-height:1.05;
+    font-weight:700;
+
+    text-shadow:
+        0 0 8px rgba(255,255,255,.9),
+        0 0 22px rgba(180,190,255,.55),
+        0 0 45px rgba(150,160,255,.3);
+
+    margin-bottom:28px;
+}
+
+.description{
+    color:#9d9daa;
+    font-size:18px;
+    line-height:1.65;
+    max-width:330px;
+}
+
+/* Cursor de escritura */
+
+.typing::after{
+    content:"";
+    display:inline-block;
+    width:2px;
+    height:1em;
+    margin-left:4px;
+    background:rgba(255,255,255,.75);
+    vertical-align:-2px;
+    animation:cursorBlink .7s infinite;
+}
+
+@keyframes cursorBlink{
+    0%,50%{
+        opacity:1;
+    }
+
+    51%,100%{
+        opacity:0;
+    }
+}
+
+/* =========================
+   PARTE FINAL
+========================= */
+
+.look{
+    position:absolute;
+    bottom:34px;
+    left:50%;
+    transform:translateX(-50%);
+    color:rgba(180,180,200,.35);
+    font-size:11px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    text-align:center;
+
+    animation:fade 3s infinite ease-in-out;
+}
+
+.culpa{
+    display:inline-block;
+    font-size:9px;
+    letter-spacing:1.5px;
+    color:rgba(170,170,190,.22);
+    font-weight:300;
+    text-transform:none;
+    opacity:.7;
+}
+
+@keyframes fade{
+    0%,100%{
+        opacity:.2;
+    }
+
+    50%{
+        opacity:.8;
+    }
+}
+
+/* =========================
+   CELULAR
+========================= */
+
+@media(max-width:600px){
+
+    .planet-area{
+        width:330px;
+        height:330px;
+        right:-155px;
+        top:52%;
+    }
+
+    .planet{
+        width:330px;
+        height:330px;
+    }
+
+    .ring-back,
+    .ring-front{
+        width:390px;
+        height:110px;
+        left:-30px;
+        top:110px;
+    }
+
+    .message{
+        left:40px;
+        top:50%;
+        width:58%;
+    }
+
+    .small-title{
+        font-size:13px;
+        letter-spacing:4px;
+        margin-bottom:23px;
+    }
+
+    .main-title{
+        font-size:43px;
+    }
+
+    .description{
+        font-size:17px;
+        max-width:280px;
+    }
+}
+
+@media(max-width:400px){
+
+    .message{
+        left:32px;
+        width:62%;
+    }
+
+    .main-title{
+        font-size:39px;
+    }
+
+    .small-title{
+        font-size:12px;
+    }
+
+    .description{
+        font-size:16px;
+    }
+
+    .planet-area{
+        right:-170px;
+    }
+
+    .culpa{
+        font-size:8px;
+        letter-spacing:1.2px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="space">
+
+    <!-- ESTRELLAS -->
+    <div class="stars">
+
+        <span class="star" style="left:5%;top:8%;animation-delay:.2s"></span>
+        <span class="star" style="left:13%;top:15%;animation-delay:1s"></span>
+        <span class="star" style="left:22%;top:6%;animation-delay:1.8s"></span>
+        <span class="star" style="left:31%;top:19%;animation-delay:.4s"></span>
+        <span class="star" style="left:42%;top:8%;animation-delay:2s"></span>
+        <span class="star" style="left:51%;top:24%;animation-delay:1.2s"></span>
+        <span class="star" style="left:63%;top:11%;animation-delay:.7s"></span>
+        <span class="star" style="left:75%;top:19%;animation-delay:2.3s"></span>
+        <span class="star" style="left:87%;top:8%;animation-delay:.9s"></span>
+        <span class="star" style="left:96%;top:28%;animation-delay:1.5s"></span>
+
+        <span class="star" style="left:3%;top:35%;animation-delay:1.4s"></span>
+        <span class="star" style="left:11%;top:43%;animation-delay:.3s"></span>
+        <span class="star" style="left:19%;top:32%;animation-delay:2.1s"></span>
+        <span class="star" style="left:29%;top:42%;animation-delay:.8s"></span>
+        <span class="star" style="left:38%;top:35%;animation-delay:1.7s"></span>
+        <span class="star" style="left:48%;top:48%;animation-delay:.5s"></span>
+        <span class="star" style="left:58%;top:39%;animation-delay:2.5s"></span>
+        <span class="star" style="left:69%;top:47%;animation-delay:1.1s"></span>
+        <span class="star" style="left:80%;top:35%;animation-delay:.6s"></span>
+        <span class="star" style="left:93%;top:44%;animation-delay:1.9s"></span>
+
+        <span class="star" style="left:7%;top:59%;animation-delay:2s"></span>
+        <span class="star" style="left:17%;top:69%;animation-delay:.5s"></span>
+        <span class="star" style="left:27%;top:57%;animation-delay:1.4s"></span>
+        <span class="star" style="left:38%;top:67%;animation-delay:2.2s"></span>
+        <span class="star" style="left:50%;top:60%;animation-delay:.9s"></span>
+        <span class="star" style="left:62%;top:72%;animation-delay:1.6s"></span>
+        <span class="star" style="left:73%;top:61%;animation-delay:.2s"></span>
+        <span class="star" style="left:84%;top:70%;animation-delay:2.4s"></span>
+        <span class="star" style="left:95%;top:58%;animation-delay:1s"></span>
+
+        <span class="star" style="left:4%;top:82%;animation-delay:1.3s"></span>
+        <span class="star" style="left:15%;top:91%;animation-delay:.4s"></span>
+        <span class="star" style="left:28%;top:80%;animation-delay:2.1s"></span>
+        <span class="star" style="left:41%;top:94%;animation-delay:.7s"></span>
+        <span class="star" style="left:54%;top:84%;animation-delay:1.8s"></span>
+        <span class="star" style="left:67%;top:92%;animation-delay:.3s"></span>
+        <span class="star" style="left:79%;top:81%;animation-delay:2.3s"></span>
+        <span class="star" style="left:91%;top:90%;animation-delay:1.2s"></span>
+
+        <span class="star" style="left:34%;top:28%;animation-delay:.6s"></span>
+        <span class="star" style="left:45%;top:17%;animation-delay:2.6s"></span>
+        <span class="star" style="left:57%;top:29%;animation-delay:1.3s"></span>
+        <span class="star" style="left:72%;top:27%;animation-delay:.8s"></span>
+        <span class="star" style="left:89%;top:32%;animation-delay:2s"></span>
+
+    </div>
+
+
+    <!-- PLANETA -->
+    <div class="planet-area">
+
+        <div class="ring-back"></div>
+
+        <div class="planet"></div>
+
+        <div class="ring-front"></div>
+
+    </div>
+
+
+    <!-- MENSAJE -->
+    <div class="message">
+
+        <div class="small-title" id="smallTitle"></div>
+
+        <div class="main-title" id="mainTitle"></div>
+
+        <div class="description" id="description"></div>
+
+    </div>
+
+
+    <!-- PARTE FINAL -->
+    <div class="look">
+
+        MIRA LAS ESTRELLAS
+
+        <br><br><br>
+
+        <span class="culpa" id="culpa"></span>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   EFECTO DE ESCRITURA
+========================= */
+
+function escribir(elemento, texto, velocidad, siguiente){
+
+    let i = 0;
+
+    elemento.classList.add("typing");
+
+    function escribirLetra(){
+
+        if(i < texto.length){
+
+            elemento.innerHTML += texto.charAt(i);
+
+            i++;
+
+            setTimeout(escribirLetra, velocidad);
+
+        }else{
+
+            elemento.classList.remove("typing");
+
+            if(siguiente){
+                setTimeout(siguiente, 700);
+            }
+
+        }
+
+    }
+
+    escribirLetra();
+}
+
+
+/* =========================
+   SECUENCIA
+========================= */
+
+window.onload = function(){
+
+    const smallTitle = document.getElementById("smallTitle");
+    const mainTitle = document.getElementById("mainTitle");
+    const description = document.getElementById("description");
+    const culpa = document.getElementById("culpa");
+
+
+    /* Primera frase */
+
+    escribir(
+        smallTitle,
+        "para yaris ",
+        70,
+        function(){
+
+            smallTitle.innerHTML = "para yaris";
+
+            escribir(
+                mainTitle,
+                "En serio,\nperdón, perdón.",
+                90,
+                function(){
+
+                    mainTitle.innerHTML = mainTitle.innerHTML.replace(/\n/g,"<br>");
+
+                    escribir(
+                        description,
+                        "no quiero que estes enojada conmigo por que me importas y te quiero demaciado no quiero que tengas emociones malas por mi culpa De verdad lo siento espero me perdones te quiero 3 millones.",
+                        45,
+                        function(){
+
+                            escribir(
+                                culpa,
+                                "espero me perdones...",
+                                100,
+                                null
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+        }
+    );
+
+};
+
+</script>
+
+</body>
+</html>
